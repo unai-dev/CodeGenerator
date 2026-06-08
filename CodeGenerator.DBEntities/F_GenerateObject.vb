@@ -1,8 +1,8 @@
 ﻿Imports System.Configuration
 Imports System.Text
 Imports CodeGenerator.Core
+Imports CodeGenerator.Tools
 Imports DevExpress.XtraEditors
-Imports CodeGenerator.Core.CodeGenerator
 Public Class F_GenerateObject
     Private tables As New List(Of O_TableInfo)
 
@@ -14,8 +14,8 @@ Public Class F_GenerateObject
     ''' <param name="e"></param>
     Private Sub F_GenerateObject_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            Dim cn As String = ConfigurationManager.ConnectionStrings("MainDb").ConnectionString
-            tables = MetadataReader.GetTables(cn)
+            Dim cn As String = ConfigurationManager.ConnectionStrings(TOOLS_FINALS._CONNECTION_STRING).ConnectionString
+            tables = MDATAREADER.GetTables(cn)
 
             cboTables.Properties.Items.Clear()
 
@@ -37,6 +37,8 @@ Public Class F_GenerateObject
     Private Sub cboTables_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboTables.SelectedIndexChanged
         Dim selectedTable As String = cboTables.SelectedItem.ToString()
         Dim table = tables.First(Function(t) t.Name = selectedTable)
+        Dim code As String = CLASS_GENERATOR.GenerateEntityClass(table)
+        txtCodePreview.Text = code
 
         For Each c In table.Columns
             liColumns.Items.Add(c.Name)
@@ -52,11 +54,12 @@ Public Class F_GenerateObject
         Dim tableName As String = cboTables.SelectedItem.ToString()
         Dim table = tables.First(Function(t) t.Name = tableName)
 
-        Dim code = GenerateEntityClass(table)
-        Dim route = IO.Path.Combine("C:\Temp", $"O_{tableName}.vb")
+        Dim code = CLASS_GENERATOR.GenerateEntityClass(table)
+        Dim route = IO.Path.Combine(TOOLS_FINALS._ROUTE, $"O_{tableName}.vb")
 
         IO.File.WriteAllText(route, code, Encoding.UTF8)
 
         MessageBox.Show("Objeto generado correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.None)
     End Sub
+
 End Class

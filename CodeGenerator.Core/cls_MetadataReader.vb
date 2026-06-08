@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
-Public Module MetadataReader
+Public Class MDATAREADER
 
 #Region "   GET TABLES-----------------------------------------------------------------------------"
     ''' <summary>
@@ -8,7 +8,7 @@ Public Module MetadataReader
     ''' </summary>
     ''' <param name="connectionString">conexion a la base de datos</param>
     ''' <returns>devuleve una lista de tablas</returns>
-    Public Function GetTables(connectionString As String) As List(Of O_TableInfo)
+    Public Shared Function GetTables(connectionString As String) As List(Of O_TableInfo)
         Dim tables As New List(Of O_TableInfo)
 
         Using cn As New SqlConnection(connectionString)
@@ -46,7 +46,7 @@ Public Module MetadataReader
     ''' <param name="cn">conexion a la base de datos</param>
     ''' <param name="tableName">nombre de la tabla</param>
     ''' <returns>devuelve una lista de columnas</returns>
-    Public Function GetColumns(cn As SqlConnection, tableName As String) As List(Of O_ColumnInfo)
+    Private Shared Function GetColumns(cn As SqlConnection, tableName As String) As List(Of O_ColumnInfo)
         Dim cols As New List(Of O_ColumnInfo)
 
         'Creamos la consulta SQL para obtener las columnas de la tabla especificada, incluyendo su tipo de dato, si es nula o no y si es clave primaria o no
@@ -89,4 +89,4 @@ Public Module MetadataReader
     End Function
 
 #End Region
-End Module
+End Class

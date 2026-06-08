@@ -1,6 +1,8 @@
-﻿Public Class CodeGenerator
+﻿Imports CodeGenerator.Tools
+
+Public Class CLASS_GENERATOR
     Public Shared Function GenerateEntityClass(atable As O_TableInfo) As String
-        Dim template = ClassTemplate.Template
+        Dim template = CLASS_TEMPLATE.Template
 
         Dim pk = atable.Columns.First(Function(t) t.IsPrimaryKey).Name
 
@@ -23,7 +25,7 @@
         Dim sb As New Text.StringBuilder()
 
         For Each col In atable.Columns
-            sb.AppendLine(" Public Property " & col.Name & " As " & ConvertType(col.DataType))
+            sb.AppendLine(" Public Property " & col.Name & " As " & TOOLS_FINALS.ConvertType(col.DataType))
         Next
 
         Return sb.ToString()
@@ -43,7 +45,7 @@
         Dim sb As New Text.StringBuilder()
 
         For Each col In atable.Columns
-            sb.AppendLine($"    d(""@{col.Name}"" = {col.Name})")
+            sb.AppendLine($"    d(""@{col.Name}"") = {col.Name}")
         Next
 
         Return sb.ToString()
@@ -61,43 +63,4 @@
         Return String.Join(", ", atable.Columns.Where(Function(c) Not c.IsPrimaryKey).Select(Function(c) c.Name & " = @" & c.Name))
     End Function
 
-    Private Shared Function ConvertType(sqlType As String) As String
-
-        Select Case sqlType.ToLower()
-            Case "int"
-                Return "Integer"
-
-            Case "nvarchar", "char", "varchar", "text", "ntext", "char"
-                Return "String"
-
-            Case "decimal", "numeric", "money"
-                Return "Decimal"
-
-            Case "float"
-                Return "Double"
-
-            Case "bigint"
-                Return "Long"
-
-            Case "smallint"
-                Return "Short"
-
-            Case "real"
-                Return "Single"
-
-            Case "datetime", "datetime2", "smalldatetime", "date"
-                Return "DateTime"
-
-            Case "uniqueidentifier"
-                Return "Guid"
-
-            Case "varbinary", "binary", "image"
-                Return "Byte()"
-
-            Case Else
-                Return "Object"
-
-        End Select
-
-    End Function
 End Class

@@ -1,21 +1,27 @@
-﻿Public Class ClassTemplate
+﻿Public Class CLASS_TEMPLATE
     Public Shared ReadOnly Template As String =
 "Imports System.Data.SqlClient
 Imports System.Configuration
 
+#Region ""  O_{EntityName}-------------------------------------------------------------------------------""
 Public Class O_{EntityName}
 
+#Region ""  Properties-------------------------------------------------------------------------------""
 {Properties}
+#End Region
 
     Private ReadOnly _connectionString As String = ConfigurationManager.ConnectionStrings(""MiConexion"").ConnectionString
 
+#Region ""  New-------------------------------------------------------------------------------""
     Public Sub New()
     End Sub
 
     Public Sub New(id As Integer)
         Load(id)
     End Sub
+#End Region
 
+#Region ""  Load-------------------------------------------------------------------------------""
     Public Sub Load(id As Integer)
         Using cn As New SqlConnection(_connectionString)
             cn.Open()
@@ -38,17 +44,23 @@ Public Class O_{EntityName}
             End Using
         End Using
     End Sub
+#End Region
 
+#Region ""  LoadFromRow-------------------------------------------------------------------------------""
     Private Sub LoadFromRow(row As DataRow)
 {LoadAssignments}
     End Sub
+#End Region
 
+#Region ""  Prepare_Objeto-------------------------------------------------------------------------------""
     Private Function Prepare_Objeto() As Dictionary(Of String, Object)
         Dim d As New Dictionary(Of String, Object)
 {PrepareAssignments}
         Return d
     End Function
+#End Region
 
+#Region ""  Save-------------------------------------------------------------------------------""
     Public Sub Save()
         Using cn As New SqlConnection(_connectionString)
             cn.Open()
@@ -74,7 +86,9 @@ Public Class O_{EntityName}
             End Using
         End Using
     End Sub
+#End Region
 
+#Region ""  Delete-------------------------------------------------------------------------------""
     Public Sub Delete()
         If {PrimaryKey} = 0 Then Exit Sub
 
@@ -89,6 +103,9 @@ Public Class O_{EntityName}
             End Using
         End Using
     End Sub
+#End Region
 
-End Class"
+End Class
+#End Region
+"
 End Class
