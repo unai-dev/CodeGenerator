@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CodeGenerator.Core/CodeGenerator.Core.vbproj" Id="03e14668-b45c-4d1c-9724-b099cce2ba47" />
+  <Project Path="CodeGenerator.DBEntities/CodeGenerator.DBEntities.vbproj" Id="02298f66-c95e-4fb0-b81c-7cbc0ead13c6" />
+</Solution>
