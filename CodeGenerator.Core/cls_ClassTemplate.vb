@@ -1,4 +1,6 @@
 ﻿Public Class CLASS_TEMPLATE
+
+#Region "   Template-----------------------------------------------------------------------------"
     Public Shared ReadOnly Template As String =
 "Imports System.Data.SqlClient
 Imports System.Configuration
@@ -108,4 +110,6 @@ Public Class O_{EntityName}
 End Class
 #End Region
 "
+#End Region
+
 End Class

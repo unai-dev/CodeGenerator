@@ -1,6 +1,7 @@
 ﻿Imports CodeGenerator.Tools
 
 Public Class CLASS_GENERATOR
+#Region "   GenerateEntityClass-----------------------------------------------------------------------------"
     Public Shared Function GenerateEntityClass(atable As O_TableInfo) As String
         Dim template = CLASS_TEMPLATE.Template
 
@@ -20,7 +21,9 @@ Public Class CLASS_GENERATOR
 
         Return template
     End Function
+#End Region
 
+#Region "   GenerateProperties-----------------------------------------------------------------------------"
     Private Shared Function GenerateProperties(atable As O_TableInfo) As String
         Dim sb As New Text.StringBuilder()
 
@@ -30,7 +33,9 @@ Public Class CLASS_GENERATOR
 
         Return sb.ToString()
     End Function
+#End Region
 
+#Region "   GenerateLoadAssignments-----------------------------------------------------------------------------"
     Private Shared Function GenerateLoadAssignments(atable As O_TableInfo) As String
         Dim sb As New Text.StringBuilder()
 
@@ -40,7 +45,9 @@ Public Class CLASS_GENERATOR
 
         Return sb.ToString()
     End Function
+#End Region
 
+#Region "   GeneratePrepareAssignments-----------------------------------------------------------------------------"
     Private Shared Function GeneratePrepareAssignments(atable As O_TableInfo) As String
         Dim sb As New Text.StringBuilder()
 
@@ -50,17 +57,23 @@ Public Class CLASS_GENERATOR
 
         Return sb.ToString()
     End Function
+#End Region
 
+#Region "   GenerateInsertColumns-----------------------------------------------------------------------------"
     Private Shared Function GenerateInsertColumns(atable As O_TableInfo) As String
         Return String.Join(", ", atable.Columns.Where(Function(c) Not c.IsPrimaryKey).Select(Function(c) c.Name))
     End Function
+#End Region
 
+#Region "   GenerateInsertParams-----------------------------------------------------------------------------"
     Private Shared Function GenerateInsertParams(atable As O_TableInfo) As String
         Return String.Join(", ", atable.Columns.Where(Function(c) Not c.IsPrimaryKey).Select(Function(c) "@" & c.Name))
     End Function
+#End Region
 
+#Region "   GenerateUpdateAssignments-----------------------------------------------------------------------------"
     Private Shared Function GenerateUpdateAssignments(atable As O_TableInfo) As String
         Return String.Join(", ", atable.Columns.Where(Function(c) Not c.IsPrimaryKey).Select(Function(c) c.Name & " = @" & c.Name))
     End Function
-
+#End Region
 End Class
