@@ -6,6 +6,7 @@ Imports DevExpress.XtraEditors
 Public Class F_GenerateObject
     Private tables As New List(Of O_TableInfo)
 
+#Region "   Load--------------------------------------------------------------------------"
     ''' <summary>
     ''' Metodo que se cargara nada mas arranque la app
     ''' Cargamos tablas y iniciamos una conexion con la base de datos
@@ -27,7 +28,9 @@ Public Class F_GenerateObject
             XtraMessageBox.Show("Error al cargar tablas" & ex.Message)
         End Try
     End Sub
+#End Region
 
+#Region "   Controls--------------------------------------------------------------------------"
     ''' <summary>
     ''' Metodo que se ejecuta cuando el indice del combo cambia
     ''' Cargara las columnas de la tabla selecionada
@@ -45,6 +48,11 @@ Public Class F_GenerateObject
         Next
     End Sub
 
+    ''' <summary>
+    ''' Metodo que se ejecuta cuando el usuario hace clic para generar una clase
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub btnGenerateClass_Click(sender As Object, e As EventArgs) Handles btnGenerateClass.Click
         If cboTables.SelectedIndex = -1 Then
             MessageBox.Show("Selecciona una tabla porfavor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -59,7 +67,12 @@ Public Class F_GenerateObject
 
         IO.File.WriteAllText(route, code, Encoding.UTF8)
 
-        MessageBox.Show("Objeto generado correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.None)
+        MessageBox.Show($"Objeto generado correctamente. {TOOLS_FINALS._ROUTE} ", "Exito", MessageBoxButtons.OK, MessageBoxIcon.None)
     End Sub
 
+    Private Sub btnClose_Click(sender As Object, e As EventArgs) Handles btnClose.Click
+        Me.Close()
+    End Sub
+
+#End Region
 End Class

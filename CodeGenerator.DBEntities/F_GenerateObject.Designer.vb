@@ -24,22 +24,23 @@ Partial Class F_GenerateObject
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F_GenerateObject))
         Me.pcBottom = New DevExpress.XtraEditors.PanelControl()
+        Me.btnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.btnGenerateClass = New DevExpress.XtraEditors.SimpleButton()
         Me.gcMain = New DevExpress.XtraEditors.GroupControl()
+        Me.txtCodePreview = New DevExpress.XtraEditors.MemoEdit()
         Me.liColumns = New DevExpress.XtraEditors.ListBoxControl()
         Me.lblSelectTable = New DevExpress.XtraEditors.LabelControl()
         Me.cboTables = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.pcTop = New DevExpress.XtraEditors.PanelControl()
-        Me.txtCodePreview = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.pcBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pcBottom.SuspendLayout()
         CType(Me.gcMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gcMain.SuspendLayout()
+        CType(Me.txtCodePreview.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.liColumns, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboTables.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pcTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pcTop.SuspendLayout()
-        CType(Me.txtCodePreview.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pcBottom
@@ -48,22 +49,40 @@ Partial Class F_GenerateObject
         Me.pcBottom.Appearance.Options.UseFont = True
         Me.pcBottom.Appearance.Options.UseTextOptions = True
         Me.pcBottom.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.NoWrap
+        Me.pcBottom.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.pcBottom.Controls.Add(Me.btnClose)
         Me.pcBottom.Controls.Add(Me.btnGenerateClass)
         Me.pcBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.pcBottom.Location = New System.Drawing.Point(0, 400)
+        Me.pcBottom.Location = New System.Drawing.Point(0, 431)
         Me.pcBottom.Name = "pcBottom"
-        Me.pcBottom.Size = New System.Drawing.Size(800, 50)
+        Me.pcBottom.Size = New System.Drawing.Size(799, 30)
         Me.pcBottom.TabIndex = 1
+        '
+        'btnClose
+        '
+        Me.btnClose.Appearance.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnClose.Appearance.Options.UseFont = True
+        Me.btnClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnClose.ImageOptions.SvgImage = CType(resources.GetObject("btnClose.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btnClose.ImageOptions.SvgImageSize = New System.Drawing.Size(20, 20)
+        Me.btnClose.Location = New System.Drawing.Point(249, 0)
+        Me.btnClose.MinimumSize = New System.Drawing.Size(550, 0)
+        Me.btnClose.Name = "btnClose"
+        Me.btnClose.Size = New System.Drawing.Size(550, 30)
+        Me.btnClose.TabIndex = 1
+        Me.btnClose.Text = "Salir"
         '
         'btnGenerateClass
         '
-        Me.btnGenerateClass.Appearance.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnGenerateClass.Appearance.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnGenerateClass.Appearance.Options.UseFont = True
-        Me.btnGenerateClass.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnGenerateClass.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnGenerateClass.ImageOptions.SvgImage = CType(resources.GetObject("btnGenerateClass.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.btnGenerateClass.Location = New System.Drawing.Point(2, 2)
+        Me.btnGenerateClass.ImageOptions.SvgImageSize = New System.Drawing.Size(20, 20)
+        Me.btnGenerateClass.Location = New System.Drawing.Point(0, 0)
+        Me.btnGenerateClass.MinimumSize = New System.Drawing.Size(250, 0)
         Me.btnGenerateClass.Name = "btnGenerateClass"
-        Me.btnGenerateClass.Size = New System.Drawing.Size(796, 46)
+        Me.btnGenerateClass.Size = New System.Drawing.Size(250, 30)
         Me.btnGenerateClass.TabIndex = 0
         Me.btnGenerateClass.Text = "Generar clase"
         '
@@ -72,18 +91,30 @@ Partial Class F_GenerateObject
         Me.gcMain.Controls.Add(Me.txtCodePreview)
         Me.gcMain.Controls.Add(Me.liColumns)
         Me.gcMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gcMain.Location = New System.Drawing.Point(0, 70)
+        Me.gcMain.Location = New System.Drawing.Point(0, 50)
         Me.gcMain.Name = "gcMain"
-        Me.gcMain.Size = New System.Drawing.Size(800, 330)
+        Me.gcMain.Size = New System.Drawing.Size(799, 381)
         Me.gcMain.TabIndex = 2
         Me.gcMain.Text = "Vista previa del codigo generado"
         '
+        'txtCodePreview
+        '
+        Me.txtCodePreview.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtCodePreview.Location = New System.Drawing.Point(2, 23)
+        Me.txtCodePreview.Name = "txtCodePreview"
+        Me.txtCodePreview.Properties.Appearance.BackColor = System.Drawing.Color.DarkGray
+        Me.txtCodePreview.Properties.Appearance.Options.UseBackColor = True
+        Me.txtCodePreview.Size = New System.Drawing.Size(675, 356)
+        Me.txtCodePreview.TabIndex = 1
+        '
         'liColumns
         '
+        Me.liColumns.Appearance.Font = New System.Drawing.Font("Arial Narrow", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.liColumns.Appearance.Options.UseFont = True
         Me.liColumns.Dock = System.Windows.Forms.DockStyle.Right
-        Me.liColumns.Location = New System.Drawing.Point(678, 23)
+        Me.liColumns.Location = New System.Drawing.Point(677, 23)
         Me.liColumns.Name = "liColumns"
-        Me.liColumns.Size = New System.Drawing.Size(120, 305)
+        Me.liColumns.Size = New System.Drawing.Size(120, 356)
         Me.liColumns.TabIndex = 0
         '
         'lblSelectTable
@@ -116,22 +147,14 @@ Partial Class F_GenerateObject
         Me.pcTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.pcTop.Location = New System.Drawing.Point(0, 0)
         Me.pcTop.Name = "pcTop"
-        Me.pcTop.Size = New System.Drawing.Size(800, 70)
+        Me.pcTop.Size = New System.Drawing.Size(799, 50)
         Me.pcTop.TabIndex = 0
-        '
-        'txtCodePreview
-        '
-        Me.txtCodePreview.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtCodePreview.Location = New System.Drawing.Point(2, 23)
-        Me.txtCodePreview.Name = "txtCodePreview"
-        Me.txtCodePreview.Size = New System.Drawing.Size(676, 305)
-        Me.txtCodePreview.TabIndex = 1
         '
         'F_GenerateObject
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(799, 461)
         Me.Controls.Add(Me.gcMain)
         Me.Controls.Add(Me.pcBottom)
         Me.Controls.Add(Me.pcTop)
@@ -141,12 +164,12 @@ Partial Class F_GenerateObject
         Me.pcBottom.ResumeLayout(False)
         CType(Me.gcMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gcMain.ResumeLayout(False)
+        CType(Me.txtCodePreview.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.liColumns, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboTables.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pcTop, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pcTop.ResumeLayout(False)
         Me.pcTop.PerformLayout()
-        CType(Me.txtCodePreview.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -157,5 +180,6 @@ Partial Class F_GenerateObject
     Friend WithEvents lblSelectTable As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cboTables As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents pcTop As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents btnClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents txtCodePreview As DevExpress.XtraEditors.MemoEdit
 End Class
