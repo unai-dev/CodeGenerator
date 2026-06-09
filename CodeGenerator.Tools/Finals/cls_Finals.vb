@@ -1,11 +1,17 @@
 ﻿Public Class TOOLS_FINALS
-
-    Public Shared _ROUTE As String = "C:\Users\unaid\source\repos\CodeGenerator\CodeGenerator.Test\Generated\Objects"
+    'Ruta de guardado
+    Public Shared _ROUTE As String = "C:\Users\unaid\source\repos\VentasDEV\VentasGeneral_O\"
+    'Cadena de conexion
     Public Shared _CONNECTION_STRING As String = "MainDb"
 
-    Public Shared Function ConvertType(sqlType As String) As String
+    ''' <summary>
+    ''' Conversion de tipos recibidos de la BD
+    ''' </summary>
+    ''' <param name="aSqlType">representa el tipo recibido en la bd</param>
+    ''' <returns></returns>
+    Public Shared Function ConvertType(aSqlType As String) As String
 
-        Select Case sqlType.ToLower()
+        Select Case aSqlType.ToLower()
             Case "int"
                 Return "Integer"
 
