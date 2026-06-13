@@ -1,6 +1,6 @@
 ﻿Public Class TOOLS_FINALS
     'Ruta de guardado
-    Public Shared _ROUTE As String = "C:\Users\unaid\source\repos\VentasDEV\VentasGeneral_O\"
+    Public Shared _ROUTE As String = "C:\Temp"
     'Cadena de conexion
     Public Shared _CONNECTION_STRING As String = "MainDb"
 
